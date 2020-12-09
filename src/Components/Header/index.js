@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Container } from "./styles";
 
 import { ReactComponent as Logo } from "../../Assets/dragon.svg";

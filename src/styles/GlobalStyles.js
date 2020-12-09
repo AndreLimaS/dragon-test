@@ -9,6 +9,7 @@ export default createGlobalStyle`
   }
   html, body, #root {
     min-height: 100vh;
+    padding-top: 2rem;
   }
   body {
     font: 18px 'Roboto', sans-serif;
