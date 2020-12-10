@@ -22,7 +22,8 @@ export default function LoginForm({ history }) {
   function handleSubmit(event) {
     event.preventDefault();
     if (username === dados[0].email && Number(password) === dados[0].password) {
-      history.push("/criar");
+      history.push("/home");
+      console.log("foi");
     }
   }
 
