@@ -7,7 +7,7 @@ export const Container = styled.div`
   z-index: 100;
   background: white;
   top: 0px;
-
+  padding: 0 1rem;
   nav {
     display: flex;
     justify-content: space-between;

@@ -9,13 +9,13 @@ export const Container = styled.div`
   img {
     display: block;
     width: 50vw;
-    height: 89vh;
+    height: 100vh;
     object-fit: cover;
   }
 
   section {
-    max-width: 30rem;
-    padding: 2rem 0 2rem 0;
+    max-width: 35rem;
+    padding: 3rem 1rem 1rem 1rem;
   }
 
   input {
@@ -44,5 +44,16 @@ export const Container = styled.div`
     line-height: 1;
     padding-bottom: 0.5rem;
     margin-top: 2rem;
+  }
+
+  @media (max-width: 40rem) {
+    grid-template-columns: 1fr;
+    justify-content: center;
+    img {
+      display: none;
+    }
+    section {
+      justify-content: center;
+    }
   }
 `;
