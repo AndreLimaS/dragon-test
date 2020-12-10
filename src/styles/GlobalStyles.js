@@ -9,7 +9,7 @@ export default createGlobalStyle`
   }
   html, body, #root {
     min-height: 100vh;
-    padding-top: 2rem;
+    padding-top: 1rem;
   }
   body {
     font: 18px 'Roboto', sans-serif;
@@ -19,9 +19,11 @@ export default createGlobalStyle`
   ul {
     list-style: none;
   }
-  button {
-    border:none;
-  }
+  button, input {
+  display: block;
+  font-size: 1rem;
+  color: #333;
+}
   a{
     text-decoration: none;
     color: #333;

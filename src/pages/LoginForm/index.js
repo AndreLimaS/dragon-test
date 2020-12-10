@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Button from "../../Components/Button";
 
 import { Container } from "./styles";
 import { listusers } from "../../services/apiUser";
+import background from "../../Assets/login.jpg";
 
 export default function LoginForm({ history }) {
   const [username, setUserName] = React.useState("");
@@ -27,24 +28,26 @@ export default function LoginForm({ history }) {
 
   return (
     <Container>
+      <img src={background} alt="" />
       <section>
         <h1>Login</h1>
         <form action="" onSubmit={handleSubmit}>
+          <label htmlFor="email">E-mail</label>
           <input
-            type="text"
+            type="email"
             value={username}
+            id="email"
             onChange={({ target }) => setUserName(target.value)}
           />
+          <label htmlFor="password">Senha</label>
           <input
-            type="text"
+            type="password"
             value={password}
+            id="password"
             onChange={({ target }) => setPassword(target.value)}
           />
-
-          <button>Entrar</button>
+          <Button>Entrar</Button>
         </form>
-
-        <Link to="/criar">Cadastro</Link>
       </section>
     </Container>
   );
