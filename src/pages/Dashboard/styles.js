@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   border-radius: 5px;
-  margin: 5rem;
+  margin: 0rem 5rem 5rem 5rem;
   height: 70vh;
   img {
     width: 20px;
@@ -32,4 +32,10 @@ export const Row = styled.div`
     padding: 10px;
     margin: 1rem 0 1rem 0;
   }
+`;
+
+export const Exit = styled.div`
+  display: flex;
+  justify-content: end;
+  margin: 2rem 5rem 0 0;
 `;

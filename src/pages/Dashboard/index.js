@@ -1,17 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { Container, Row, Exit } from "./styles";
 import Button from "../../Components/Common/Button";
 import { DELETE_DRAGON, GET_DRAGON } from "../../services/api";
-
 import SettingsIcon from "@material-ui/icons/Settings";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import PageviewIcon from "@material-ui/icons/Pageview";
-import { Container, Row } from "./styles";
 
 export default function LoginForm() {
   const [dados, setDados] = React.useState(null);
   const [id, setId] = React.useState(null);
   const email = window.localStorage.getItem("email");
+  const history = useHistory();
 
   React.useEffect(() => {
     loadDragon();
@@ -38,43 +38,53 @@ export default function LoginForm() {
     });
   }
 
+  function logoutUser() {
+    window.localStorage.removeItem("email");
+    history.push("/login");
+  }
+
   if (dados === null) return null;
   orderName();
   return (
-    <Container>
-      {email && `Olá ${email} `}
-      <Row>
-        <h1>Lista de Dragões</h1>
-        <ul key={`id${id}`} style={{ background: "white" }}>
-          <li>ID</li>
-          <li>Nome</li>
-          <li>Editar</li>
-          <li>Excluir</li>
-          <li>Visualizar</li>
-        </ul>
-        {dados.map(({ id, name }) => (
-          <ul key={id}>
-            <li>{id}</li>
-            <li>{name}</li>
-            <li onClick={() => setId(id)} className="hover">
-              <Link to={`/dragon/edit/${id}`}>
-                <SettingsIcon />
-              </Link>
-            </li>
-            <li onClick={() => handleDelete(id)} className="hover">
-              <DeleteForeverIcon />
-            </li>
-            <li onClick={() => setId(id)} className="hover">
-              <Link to={`/dragon/view/${id}`}>
-                <PageviewIcon />
-              </Link>
-            </li>
+    <>
+      <Exit onClick={logoutUser}>
+        <Button>Sair</Button>
+      </Exit>
+      <Container>
+        {email && `Olá ${email} `}
+        <Row>
+          <h1>Lista de Dragões</h1>
+          <ul key={`id${id}`} style={{ background: "white" }}>
+            <li>ID</li>
+            <li>Nome</li>
+            <li>Editar</li>
+            <li>Excluir</li>
+            <li>Visualizar</li>
           </ul>
-        ))}
-        <Link to="/dragon/create">
-          <Button>Cadastrar</Button>
-        </Link>
-      </Row>
-    </Container>
+          {dados.map(({ id, name }) => (
+            <ul key={id}>
+              <li>{id}</li>
+              <li>{name}</li>
+              <li onClick={() => setId(id)} className="hover">
+                <Link to={`/dragon/edit/${id}`}>
+                  <SettingsIcon />
+                </Link>
+              </li>
+              <li onClick={() => handleDelete(id)} className="hover">
+                <DeleteForeverIcon />
+              </li>
+              <li onClick={() => setId(id)} className="hover">
+                <Link to={`/dragon/view/${id}`}>
+                  <PageviewIcon />
+                </Link>
+              </li>
+            </ul>
+          ))}
+          <Link to="/dragon/create">
+            <Button>Cadastrar</Button>
+          </Link>
+        </Row>
+      </Container>
+    </>
   );
 }

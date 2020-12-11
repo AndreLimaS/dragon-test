@@ -1,16 +1,18 @@
 import React from "react";
+import { Container } from "./styles";
 import Button from "../../Components/Common/Button";
 import useForm from "../../Hooks/useForm";
 import Input from "../../Components/Common/Input";
-
-import { Container } from "./styles";
 import { listusers } from "../../services/apiUser";
+import { setUser } from ".././../services/auth";
+import { useHistory } from "react-router-dom";
 import background from "../../Assets/login.jpg";
 
-export default function LoginForm({ history }) {
+export default function LoginForm() {
   const username = useForm("email");
   const password = useForm();
   const [dados, setDados] = React.useState("");
+  const history = useHistory();
 
   React.useEffect(() => {
     getUsers();
@@ -27,7 +29,7 @@ export default function LoginForm({ history }) {
       username.value === dados[0].email &&
       Number(password.value) === dados[0].password
     )
-      window.localStorage.setItem("email", username.value);
+      setUser(username.value);
     history.push("/home");
   }
 

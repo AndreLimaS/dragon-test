@@ -1,22 +1,35 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-
+import { Route, Switch, Redirect, HashRouter } from "react-router-dom";
 import LoginForm from "./pages/LoginForm";
-import Dashboard from "./pages/Dashboard";
-import DragonCreate from "./Components/DragonCreate";
-import DragonView from "./Components/DragonView";
-import DragonEdit from "./Components/DragonEdit";
+import { isAuthenticated } from "./services/auth";
+import Content from "./Components/Content";
 
-export default function Routes() {
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      isAuthenticated() ? (
+        <Component {...props} />
+      ) : (
+        <Redirect
+          to={{ pathname: "/login", state: { from: props.location } }}
+        />
+      )
+    }
+  />
+);
+
+const Routes = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Switch>
-        <Route path="/dragon/create" component={DragonCreate} />
-        <Route path="/dragon/view/:dragonId" component={DragonView} />
-        <Route path="/dragon/edit/:dragonId" component={DragonEdit} />
-        <Route path="/home" component={Dashboard} />
-        <Route path="/" exact component={LoginForm} />
+        <PrivateRoute path="/home" component={Content} exact />
+        <Route>
+          <LoginForm />
+        </Route>
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   );
-}
+};
+
+export default Routes;
