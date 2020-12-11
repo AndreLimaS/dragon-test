@@ -3,13 +3,18 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: grid;
   justify-content: center;
-  align-items: center;
+  min-width: 40vw;
+  height: 90vh;
+`;
+
+export const Rows = styled.div`
+  height: 30rem;
   background-color: #e3d9fa;
   padding: 2rem;
+  margin: 4rem;
   border-radius: 5px;
-  max-width: 40vw;
   span {
     display: block;
-    padding-top: 1rem;
+    padding: 0.5rem 0 1rem 0;
   }
 `;

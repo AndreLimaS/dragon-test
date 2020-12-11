@@ -5,7 +5,7 @@ export const Container = styled.div`
   grid-template-columns: 1fr;
   border-radius: 5px;
   margin: 5rem;
-
+  height: 70vh;
   img {
     width: 20px;
     height: 20px;

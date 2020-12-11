@@ -5,6 +5,7 @@ import { DELETE_DRAGON, GET_DRAGON } from "../../services/api";
 
 import SettingsIcon from "@material-ui/icons/Settings";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import PageviewIcon from "@material-ui/icons/Pageview";
 import { Container, Row } from "./styles";
 
 export default function LoginForm() {
@@ -43,24 +44,30 @@ export default function LoginForm() {
     <Container>
       {email && `Olá ${email} `}
       <Row>
-        <h1>Lista de Dragoes</h1>
+        <h1>Lista de Dragões</h1>
         <ul key={`id${id}`} style={{ background: "white" }}>
           <li>ID</li>
           <li>Nome</li>
           <li>Editar</li>
           <li>Excluir</li>
+          <li>Visualizar</li>
         </ul>
         {dados.map(({ id, name }) => (
           <ul key={id}>
             <li>{id}</li>
             <li>{name}</li>
-            <li className="hover" onClick={() => setId(id)}>
+            <li onClick={() => setId(id)} className="hover">
               <Link to={`/dragon/edit/${id}`}>
                 <SettingsIcon />
               </Link>
             </li>
             <li onClick={() => handleDelete(id)} className="hover">
               <DeleteForeverIcon />
+            </li>
+            <li onClick={() => setId(id)} className="hover">
+              <Link to={`/dragon/view/${id}`}>
+                <PageviewIcon />
+              </Link>
             </li>
           </ul>
         ))}
