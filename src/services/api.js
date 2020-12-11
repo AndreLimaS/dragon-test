@@ -27,3 +27,29 @@ export function DELETE_DRAGON(id) {
     },
   };
 }
+
+export function POST_DRAGON(body) {
+  return {
+    url: API_URL,
+    options: {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    },
+  };
+}
+
+export function PUT_DRAGON(id, body) {
+  return {
+    url: API_URL + id,
+    options: {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    },
+  };
+}

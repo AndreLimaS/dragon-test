@@ -9,6 +9,7 @@ export const Container = styled.div`
     background: #8a5fea;
     color: #fdfdfd;
     min-width: 8rem;
+    max-width: 8rem;
     padding: 0.8rem 1.2rem;
     box-sizing: border-box;
     transition: 0.1s;

@@ -1,37 +1,45 @@
 import React from "react";
 import { Container, Row } from "./styles";
 import Button from "../../Components/Button";
-import Modal from "../../Components/Modal";
+import DragonList from "../DragonList";
 import { DELETE_DRAGON, GET_DRAGON } from "../../services/api";
 
 import dragon_img from "../../Assets/dragon.svg";
-import EditIcon from "@material-ui/icons/Edit";
+import SettingsIcon from "@material-ui/icons/Settings";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import { Link } from "react-router-dom";
 
 export default function LoginForm() {
   const [dados, setDados] = React.useState(null);
   const [id, setId] = React.useState(null);
 
   React.useEffect(() => {
-    async function loadDragon() {
-      const { url, options } = GET_DRAGON();
-      const response = await fetch(url, options);
-      const json = await response.json();
-      setDados(json);
-    }
     loadDragon();
   }, []);
 
-  function handleDelete(item) {
+  async function loadDragon() {
+    const { url, options } = GET_DRAGON();
+    const response = await fetch(url, options);
+    const json = await response.json();
+    setDados(json);
+  }
+
+  async function handleDelete(item) {
     const { url, options } = DELETE_DRAGON(item);
-    fetch(url, options)
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result);
-      });
+    const response = await fetch(url, options);
+    if (response.ok) loadDragon();
+  }
+
+  function orderName() {
+    dados.sort(function (x, y) {
+      let a = x.name.toUpperCase(),
+        b = y.name.toUpperCase();
+      return a === b ? 0 : a > b ? 1 : -1;
+    });
   }
 
   if (dados === null) return null;
+  orderName();
   return (
     <Container>
       <Row>
@@ -41,7 +49,7 @@ export default function LoginForm() {
             <li>ID: {id}</li>
             <li>Nome: {name}</li>
             <li className="hover" onClick={() => setId(id)}>
-              <EditIcon />
+              <SettingsIcon />
             </li>
             <li onClick={() => handleDelete(id)} className="hover">
               <DeleteForeverIcon />
@@ -49,8 +57,10 @@ export default function LoginForm() {
           </ul>
         ))}
       </Row>
-      <Button>Cadastrar</Button>
-      {id && <Modal id={id} />}
+      <Link to="/dragon-create">
+        <Button>Cadastrar</Button>
+      </Link>
+      {id && <DragonList id={id} />}
     </Container>
   );
 }
