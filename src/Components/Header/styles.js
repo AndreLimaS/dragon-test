@@ -13,7 +13,7 @@ export const Container = styled.div`
     justify-content: space-between;
     align-items: center;
     height: 4rem;
-    max-width: 50rem;
+    max-width: 80vw;
     margin: 0 auto;
   }
 

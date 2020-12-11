@@ -8,7 +8,7 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
   html, body, #root {
-    min-height: 100vh;
+    min-height: 95vh;
     padding-top: 1rem;
   }
   body {

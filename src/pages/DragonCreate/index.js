@@ -1,12 +1,14 @@
 import React from "react";
-import Button from "../../Components/Button";
-import { Container } from "./styles";
-import { POST_DRAGON } from "../../services/api";
 import { Link } from "react-router-dom";
+import Button from "../../Components/Button";
+import Input from "../../Components/Input";
+import useForm from "../../Hooks/useForm";
+import { POST_DRAGON } from "../../services/api";
+import { Container, Form } from "./styles";
 
 export default function DragonCreate() {
-  const [name, setName] = React.useState("");
-  const [type, setType] = React.useState("");
+  const name = useForm();
+  const type = useForm();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -16,34 +18,24 @@ export default function DragonCreate() {
     });
     const response = await fetch(url, options);
     if (response.ok) {
-      setName("");
-      setType("");
+      name.setValue("");
+      type.setValue("");
     }
   }
 
   return (
     <Container>
       <h1>Cadastre um Dragao</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Nome</label>
-        <input
-          type="text"
-          value={name}
-          id="name"
-          onChange={({ target }) => setName(target.value)}
-        />
-        <label htmlFor="type">Tipo</label>
-        <input
-          type="text"
-          value={type}
-          id="type"
-          onChange={({ target }) => setType(target.value)}
-        />
-        <Button>Cadastrar</Button>
-      </form>
-      <Link to="/home">
-        <Button>Voltar</Button>
-      </Link>
+      <Form>
+        <form onSubmit={handleSubmit}>
+          <Input label="Nome" type="text" name="name" {...name} />
+          <Input label="Tipo" type="text" name="type" {...type} />
+          <Button>Cadastrar</Button>
+        </form>
+        <Link to="/home">
+          <Button>Voltar</Button>
+        </Link>
+      </Form>
     </Container>
   );
 }

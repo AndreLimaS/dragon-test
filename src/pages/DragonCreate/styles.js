@@ -1,10 +1,15 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  margin: 3rem;
-  height: 100vh;
-
-  input {
-    margin-bottom: 2rem;
+  height: 70vh;
+  margin: 5rem;
+  h1 {
+    display: block;
+    margin-top: 2rem;
   }
+`;
+
+export const Form = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;

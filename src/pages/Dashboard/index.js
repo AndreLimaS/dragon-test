@@ -43,6 +43,7 @@ export default function LoginForm() {
   return (
     <Container>
       <Row>
+        <h1>Lista de Dragoes</h1>
         {dados.map(({ id, name }) => (
           <ul key={id}>
             <img src={dragon_img} alt="" />
@@ -56,10 +57,10 @@ export default function LoginForm() {
             </li>
           </ul>
         ))}
+        <Link to="/dragon-create">
+          <Button>Cadastrar</Button>
+        </Link>
       </Row>
-      <Link to="/dragon-create">
-        <Button>Cadastrar</Button>
-      </Link>
       {id && <DragonList id={id} />}
     </Container>
   );

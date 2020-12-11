@@ -5,13 +5,14 @@ export const Container = styled.div`
   input {
     border: 1px solid #eee;
     display: block;
-    width: 100%;
+    max-width: 50vw;
     font-size: 1rem;
     padding: 0.8rem;
     border-radius: 0.4rem;
     background: #eee;
     transition: 0.3s;
     margin-bottom: 1rem;
+    width: 100%;
   }
 
   input:focus,
@@ -33,6 +34,5 @@ export const Container = styled.div`
   .error {
     color: #f31;
     font-size: 0.875rem;
-    margin-top: 0.25rem;
   }
 `;
