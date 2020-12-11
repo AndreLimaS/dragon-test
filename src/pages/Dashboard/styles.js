@@ -4,7 +4,6 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   border-radius: 5px;
-  height: 70vh;
   margin: 5rem;
 
   img {
@@ -24,6 +23,7 @@ export const Container = styled.div`
 `;
 
 export const Row = styled.div`
+  margin-top: 1rem;
   ul {
     display: flex;
     justify-content: space-around;

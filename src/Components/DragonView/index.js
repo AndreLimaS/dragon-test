@@ -1,13 +1,15 @@
 import React from "react";
 import { GET_DETAILS_DRAGON, PUT_DRAGON } from "../../services/api";
-import Button from "../../Components/Button";
+import Button from "../../Components/Common/Button";
+import Input from "../../Components/Common/Input";
+import useForm from "../../Hooks/useForm";
+
 import { Container } from "./styles";
 
-export default function DragonList({ id }) {
+export default function DragonView({ id }) {
   const [dados, setDados] = React.useState(null);
-
-  const [name, setName] = React.useState("");
-  const [type, setType] = React.useState("");
+  const name = useForm();
+  const type = useForm();
 
   React.useEffect(() => {
     async function loadDetals() {
@@ -32,21 +34,12 @@ export default function DragonList({ id }) {
   if (dados === null) return null;
   return (
     <Container>
+      <h3>Editar - Detalhes Dragao</h3>
       <form onSubmit={handleSubmit}>
         <span>ID: {dados.id}</span>
         <span>Criado: {dados.createdAt}</span>
-        <input
-          type="text"
-          id="name"
-          value={dados.name}
-          onChange={({ target }) => setName(target.value)}
-        />
-        <input
-          type="text"
-          id="type"
-          value={dados.type}
-          onChange={({ target }) => setType(target.value)}
-        />
+        <Input type="text" name="name" {...name} />
+        <Input type="text" name="type" {...type} />
         <Button>Alterar</Button>
       </form>
     </Container>

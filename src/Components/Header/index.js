@@ -9,7 +9,7 @@ export default function Header() {
       <header>
         <nav>
           <Logo className="logo" />
-          <span>Login/Criar</span>
+          <span>Dragon</span>
         </nav>
       </header>
     </Container>

@@ -1,7 +1,7 @@
 import React from "react";
-import Button from "../../Components/Button";
+import Button from "../../Components/Common/Button";
 import useForm from "../../Hooks/useForm";
-import Input from "../../Components/Input";
+import Input from "../../Components/Common/Input";
 
 import { Container } from "./styles";
 import { listusers } from "../../services/apiUser";
@@ -27,7 +27,8 @@ export default function LoginForm({ history }) {
       username.value === dados[0].email &&
       Number(password.value) === dados[0].password
     )
-      history.push("/home");
+      window.localStorage.setItem("email", username.value);
+    history.push("/home");
   }
 
   return (

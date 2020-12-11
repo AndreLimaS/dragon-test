@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "../../Components/Button";
-import Input from "../../Components/Input";
+import Button from "../../Components/Common/Button";
+import Input from "../../Components/Common/Input";
 import useForm from "../../Hooks/useForm";
 import { POST_DRAGON } from "../../services/api";
 import { Container, Form } from "./styles";

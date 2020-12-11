@@ -1,17 +1,16 @@
 import React from "react";
-import { Container, Row } from "./styles";
-import Button from "../../Components/Button";
-import DragonList from "../DragonList";
+import { Link } from "react-router-dom";
+import Button from "../../Components/Common/Button";
 import { DELETE_DRAGON, GET_DRAGON } from "../../services/api";
 
-import dragon_img from "../../Assets/dragon.svg";
 import SettingsIcon from "@material-ui/icons/Settings";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
-import { Link } from "react-router-dom";
+import { Container, Row } from "./styles";
 
 export default function LoginForm() {
   const [dados, setDados] = React.useState(null);
   const [id, setId] = React.useState(null);
+  const email = window.localStorage.getItem("email");
 
   React.useEffect(() => {
     loadDragon();
@@ -42,26 +41,33 @@ export default function LoginForm() {
   orderName();
   return (
     <Container>
+      {email && `Olá ${email} `}
       <Row>
         <h1>Lista de Dragoes</h1>
+        <ul key={`id${id}`} style={{ background: "white" }}>
+          <li>ID</li>
+          <li>Nome</li>
+          <li>Editar</li>
+          <li>Excluir</li>
+        </ul>
         {dados.map(({ id, name }) => (
           <ul key={id}>
-            <img src={dragon_img} alt="" />
-            <li>ID: {id}</li>
-            <li>Nome: {name}</li>
+            <li>{id}</li>
+            <li>{name}</li>
             <li className="hover" onClick={() => setId(id)}>
-              <SettingsIcon />
+              <Link to={`/dragon/edit/${id}`}>
+                <SettingsIcon />
+              </Link>
             </li>
             <li onClick={() => handleDelete(id)} className="hover">
               <DeleteForeverIcon />
             </li>
           </ul>
         ))}
-        <Link to="/dragon-create">
+        <Link to="/dragon/create">
           <Button>Cadastrar</Button>
         </Link>
       </Row>
-      {id && <DragonList id={id} />}
     </Container>
   );
 }
