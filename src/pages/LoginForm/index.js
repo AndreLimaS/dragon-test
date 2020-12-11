@@ -1,13 +1,15 @@
 import React from "react";
 import Button from "../../Components/Button";
+import useForm from "../../Hooks/useForm";
+import Input from "../../Components/Input";
 
 import { Container } from "./styles";
 import { listusers } from "../../services/apiUser";
 import background from "../../Assets/login.jpg";
 
 export default function LoginForm({ history }) {
-  const [username, setUserName] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const username = useForm("email");
+  const password = useForm();
   const [dados, setDados] = React.useState("");
 
   React.useEffect(() => {
@@ -21,10 +23,11 @@ export default function LoginForm({ history }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (username === dados[0].email && Number(password) === dados[0].password) {
+    if (
+      username.value === dados[0].email &&
+      Number(password.value) === dados[0].password
+    )
       history.push("/home");
-      console.log("foi");
-    }
   }
 
   return (
@@ -33,20 +36,8 @@ export default function LoginForm({ history }) {
       <section>
         <h1>Login</h1>
         <form action="" onSubmit={handleSubmit}>
-          <label htmlFor="email">E-mail</label>
-          <input
-            type="email"
-            value={username}
-            id="email"
-            onChange={({ target }) => setUserName(target.value)}
-          />
-          <label htmlFor="password">Senha</label>
-          <input
-            type="password"
-            value={password}
-            id="password"
-            onChange={({ target }) => setPassword(target.value)}
-          />
+          <Input label="E-mail" type="email" name="username" {...username} />
+          <Input label="Senha" type="password" name="password" {...password} />
           <Button>Entrar</Button>
         </form>
       </section>
