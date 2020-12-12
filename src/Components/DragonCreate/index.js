@@ -20,12 +20,13 @@ export default function DragonCreate() {
     if (response.ok) {
       name.setValue("");
       type.setValue("");
+      alert("Dragão criado com sucesso");
     }
   }
 
   return (
     <Container>
-      <h1>Cadastre um Dragao</h1>
+      <h1>Cadastre um Dragão</h1>
       <Form>
         <form onSubmit={handleSubmit}>
           <Input label="Nome" type="text" name="name" {...name} />

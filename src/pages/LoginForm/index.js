@@ -28,9 +28,10 @@ export default function LoginForm() {
     if (
       username.value === dados[0].email &&
       Number(password.value) === dados[0].password
-    )
+    ) {
       setUser(username.value);
-    history.push("/home");
+      history.push("/home");
+    }
   }
 
   return (

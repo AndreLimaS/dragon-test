@@ -36,6 +36,6 @@ export const Row = styled.div`
 
 export const Exit = styled.div`
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin: 2rem 5rem 0 0;
 `;
